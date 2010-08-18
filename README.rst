@@ -45,6 +45,6 @@ Optionally specify a path to the account manager control document by setting ``M
 
      MOZILLA_AMCD_HREF = '/meta/amcd.json'
 
-Configure ``urls.py`` in your project:
+Configure ``urls.py`` in your project: ::
 
      (r'^meta/amcd.json$', include('accountmanager.views.handle'))
