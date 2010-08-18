@@ -47,4 +47,9 @@ Optionally specify a path to the account manager control document by setting ``M
 
 Configure ``urls.py`` in your project: ::
 
-     (r'^meta/amcd.json$', include('accountmanager.views.handle'))
+     from accountmanager.views import handle as accountmanager_handler
+
+     urlpatterns = patterns('', 
+         ...
+     	 (r'^meta/amcd.json$', accountmanager_handler)),
+     )
