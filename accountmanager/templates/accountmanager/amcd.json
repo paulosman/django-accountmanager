@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "sessionstatus": {
+    "method": "GET",
+    "path": "{{ status_path }}"
+  },
+  "methods": {
+    "username-password-form": {
+      "connect": {
+        "method": "{{ connect_method }}",
+        "path": "{{ connect_path }}",
+        "params": {
+          "username": "{{ connect_params_username }}",
+          "password": "{{ connect_params_password }}"
+        }
+      },
+      "disconnect": {
+        "method": "{{ disconnect_method }}",
+        "path": "{{ disconnect_path }}"
+      }
+    }
+  }
+}

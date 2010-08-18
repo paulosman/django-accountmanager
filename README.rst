@@ -41,15 +41,26 @@ Add ``accountmanager.middleware.StatusHeader`` to ``MIDDLEWARE_CLASSES`` in ``se
         ...
      )
 
-Optionally specify a path to the account manager control document by setting ``MOZILLA_AMCD_HREF`` in ``settings.py``: ::
-
-     MOZILLA_AMCD_HREF = '/meta/amcd.json'
-
 Configure ``urls.py`` in your project: ::
-
-     from accountmanager.views import handle as accountmanager_handler
 
      urlpatterns = patterns('', 
          ...
-     	 (r'^meta/amcd.json$', accountmanager_handler)),
+     	 (r'^accountmanager/', include('accountmanager.urls'))
      )
+
+Configure account manager control document settings in ``settings.py``: ::
+
+     AMCD_CONFIG = {
+         'connect': {
+             'method': 'POST', 
+             'path_view': 'users.views.login',
+             'params': {
+                 'username': 'username',
+                 'password': 'password'
+             }
+         },
+         'disconnect': {
+             'method': 'GET',
+             'path_view': 'users.views.logout'
+         }
+     }

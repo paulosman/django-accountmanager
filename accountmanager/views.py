@@ -4,22 +4,23 @@ except ImportError:
     import simplejson as json
 
 from django.http import HttpResponse
+from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.shortcuts import render_to_response
 
-from l10n.urlresolvers import reverse
-import jingo
-
-def handle(request):
-    amcd = {
-        'sessionstatus_path': reverse('accountmanager.views.session_status'),
-        'connect_path': reverse('users.views.login'),
-        'connect_params_username': 'username',
-        'connect_params_password': 'password',
-        'disconnect_path': reverse('users.views.logout'),
-        'register_path': reverse('users.views.register'),
-        'register_type': 'username',
-        'register_params_id': 'username',
-        'register_params_secret': 'password'
+def amcd(request):
+    config = settings.AMCD_CONFIG
+    params = {
+        'status_path': reverse('accountmanager.views.status'),
+        'connect_method': config['connect']['method'],
+        'connect_path': reverse(config['connect']['path_view']),
+        'connect_params_username': config['connect']['params']['username'],
+        'connect_params_password': config['connect']['params']['password'],
+        'disconnect_method': config['disconnect']['method'],
+        'disconnect_path': reverse(config['disconnect']['path_view'])
     }
-    response = jingo.render(request, 'accountmanager/amcd.json', amcd)
-    response['Content-type'] = 'application/json'
-    return response
+    return render_to_response('accountmanager/amcd.json', params,
+                              mimetype='application/json')
+
+def status(request):
+    return HttpResponse()
