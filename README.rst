@@ -2,7 +2,7 @@
 django-accountmanager
 =====================
 
-Django application that provides drop-in support for the `Mozilla Account Manager`_ addon. It's not usable yet. Stay tuned.
+Django application that provides drop-in support for the `Mozilla Account Manager`_ addon. It's not quite usable yet. Stay tuned.
 
 .. _Mozilla Account Manager: http://mozillalabs.com/blog/2010/03/account-manager/
 
