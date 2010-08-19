@@ -1,4 +1,10 @@
+try:
+    import json
+except ImportError:
+    import simplejson as json
+
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
 class AccountManagerTests(TestCase):
@@ -50,3 +56,9 @@ class AccountManagerTests(TestCase):
         self.assertTrue(len(str(response)) > 0)
         self.assertTrue('rel="http://services.mozilla.com/amcd/0.1"'
                         in str(response))
+
+    def test_amcd_is_json(self):
+        response = self.client.get(reverse('accountmanager.views.amcd'))
+        self.assertEqual('application/json', response['Content-Type'])
+        amcd = json.loads(response.content)
+        self.assertEqual(1, amcd['version'])
