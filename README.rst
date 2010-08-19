@@ -64,3 +64,7 @@ Configure account manager control document settings in ``settings.py``: ::
              'path_view': 'users.views.logout'
          }
      }
+
+Optionally specify custom ``reverse`` function in ``settings.py``: ::
+
+    AMCD_RESOLVER_FUNCTION = 'l10n.urlresolvers.reverse'
