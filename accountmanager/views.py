@@ -44,7 +44,12 @@ def amcd(request):
         'connect_params_username': config['connect']['params']['username'],
         'connect_params_password': config['connect']['params']['password'],
         'disconnect_method': config['disconnect']['method'],
-        'disconnect_path': resolver(config['disconnect']['path_view'])
+        'disconnect_path': resolver(config['disconnect']['path_view']),
+        'register_method': config['register']['method'],
+        'register_path': resolver(config['register']['path_view']),
+        'register_type': config['register']['type'],
+        'register_params_id': config['register']['params']['id'],
+        'register_params_secret': config['register']['params']['secret'],
     }
     return render_to_response('accountmanager/amcd.json', params,
                               mimetype='application/json')

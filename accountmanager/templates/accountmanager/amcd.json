@@ -17,6 +17,15 @@
       "disconnect": {
         "method": "{{ disconnect_method }}",
         "path": "{{ disconnect_path }}"
+      },
+      "register": {
+        "method": "{{ register_method }}",
+        "path": "{{ register_path }}",
+        "type": "{{ register_type }}",
+        "params": {
+          "id": "{{ register_params_id }}",
+          "secret": "{{ register_params_secret }}"
+        }
       }
     }
   }
